@@ -9,3 +9,35 @@ it("That's a test!", function () {
 it("jest-extended is included", function () {
   expect([1, 0]).toIncludeSameMembers([0, 1]);
 });
+
+
+
+
+
+it("add cell", function () {
+  expect([1, 0]).toIncludeSameMembers([0, 1]);
+});
+
+it("remove cell", function () {
+  expect([1, 0]).toIncludeSameMembers([0, 1]);
+});
+
+it("have one neighbour", function () {
+  expect([1, 0]).toIncludeSameMembers([0, 1]);
+});
+
+it("have two neighbour", function () {
+  expect([1, 0]).toIncludeSameMembers([0, 1]);
+});
+
+it("have three neighbour", function () {
+  expect([1, 0]).toIncludeSameMembers([0, 1]);
+});
+
+it("cell empty have three neighbour", function () {
+  expect([1, 0]).toIncludeSameMembers([0, 1]);
+});
+
+it("have more than three neighbour", function () {
+  expect([1, 0]).toIncludeSameMembers([0, 1]);
+});
