@@ -1,26 +1,26 @@
 import React from "react";
 import styled from "styled-components";
 import { Cell } from "./Cell";
+import { CellCoords } from "../utils/types";
+import { livingCell } from "../utils/function";
 interface GridProps {
   row?: number;
   col?: number;
   started?: Readonly<[number, number]>;
+  firstGen: CellCoords[];
 }
 
 export const Grid = (props: GridProps) => {
-
   const { row = 50, col = 50 } = props;
-
-  const rows = Array(row).fill(0);
-  const cols = Array(col).fill(0);
+  livingCell(props.firstGen, row);;;
 
   return (
     <Container>
       <table>
         <tbody>
-          {rows.map((row, rowIndex) => (
+          {Array(row).map((row, rowIndex) => (
             <tr key={`row-${rowIndex}`}>
-              {cols.map((column, colIndex) => (
+              {Array(col).map((column, colIndex) => (
                 <td key={`column-${colIndex}`}>
                   {props.started && props.started[0] === rowIndex && props.started[1] === colIndex ? (
                     <Cell color="black" />
