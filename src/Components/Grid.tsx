@@ -1,18 +1,33 @@
 import React from "react";
 import styled from "styled-components";
+import { Cell } from "./Cell";
+interface GridProps {
+  row?: number;
+  col?: number;
+  started?: Readonly<[number, number]>;
+}
 
-export const Grid = () => {
-  const rows = Array(100).fill(0);
-  const columns = Array(100).fill(0);
+export const Grid = (props: GridProps) => {
+
+  const { row = 50, col = 50 } = props;
+
+  const rows = Array(row).fill(0);
+  const cols = Array(col).fill(0);
 
   return (
     <Container>
       <table>
         <tbody>
-          {rows.map((row, index) => (
-            <tr key={`row-${index}`}>
-              {columns.map((column, index) => (
-                <td key={`column-${index}`}>cxxc</td>
+          {rows.map((row, rowIndex) => (
+            <tr key={`row-${rowIndex}`}>
+              {cols.map((column, colIndex) => (
+                <td key={`column-${colIndex}`}>
+                  {props.started && props.started[0] === rowIndex && props.started[1] === colIndex ? (
+                    <Cell color="black" />
+                  ) : (
+                    <Cell />
+                  )}
+                </td>
               ))}
             </tr>
           ))}
@@ -29,8 +44,9 @@ const Container = styled.div`
     margin: 1em 0;
   }
   td {
-    border: 1px solid #ddd;
-    height: 1em;
-    width: 1em;
+    border: 1px solid #a0a0a0;
+    height: 1rem;
+    width: 1rem;
+    padding: 1px;
   }
 `;

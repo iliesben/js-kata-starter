@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import { Grid } from "./Components/Grid";
 
 function App() {
-  const [count, setCount] = useState(5);
-
   return (
     <div className="App">
-      <Grid />
+      <Grid started={[20, 20]} />
     </div>
   );
 }
