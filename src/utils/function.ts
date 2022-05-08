@@ -55,20 +55,22 @@ export const livingCell = (livingCells: CellCoords[], gridLength: number): CellC
 
 
 export const nextGenLoop = (livingCells: CellCoords[], gridLength: number) => {
-  livingCells.forEach((cells, index) => {
-    const surroundingCellCoords = getSurroundingCellCoords(cells);
-    const existingSurroundingCellCoords = getExistingSurroundingCellCoords(surroundingCellCoords, gridLength);
+  do {
+    livingCells.forEach((cells, index) => {
+      const surroundingCellCoords = getSurroundingCellCoords(cells);
+      const existingSurroundingCellCoords = getExistingSurroundingCellCoords(surroundingCellCoords, gridLength);
 
-    const cellNeighbours = getCellNeighbours(existingSurroundingCellCoords, livingCells);
+      const cellNeighbours = getCellNeighbours(existingSurroundingCellCoords, livingCells);
 
-    if (cellNeighbours.length < 2 || cellNeighbours.length > 3) {
-      livingCells.splice(index, 1);
-    };
+      if (cellNeighbours.length < 2 || cellNeighbours.length > 3) {
+        livingCells.splice(index, 1);
+      };
 
-    if (cellNeighbours.length === 3) {
-      livingCells.push({ x: cells.x + 1, y: cells.y + 1 })
-    }
-  })
+      if (cellNeighbours.length === 3) {
+        livingCells.push({ x: cells.x + 1, y: cells.y + 1 })
+      }
+    })
+  } while (livingCells != [])
 }
 
 
