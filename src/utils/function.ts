@@ -26,6 +26,7 @@ const getCellNeighbours = (existingSurroundingCellCoords: CellCoords[], livingCe
     livingCells.find((livingCell) => cellCoord.x === livingCell.x && cellCoord.y === livingCell.y)
   );
 
+
 export const livingCell = (livingCells: CellCoords[], gridLength: number): CellCoords[] => {
   const nextGenCells: CellCoords[] = [];
 
@@ -46,6 +47,31 @@ export const livingCell = (livingCells: CellCoords[], gridLength: number): CellC
 // - Spawn si exactement 3 voisines
 // - Reste vivante si 2 ou 3 voisines exactement
 
+
+// - passer en parametre de la fonction un tab des cellules vivantes
+// - pour chaque cellules qui vie regarder ses voisins
+// - verifie s'il vie ou s'il meurt ou s'il créer une nouvelle vie 
+
+
+
+export const nextGenLoop = (livingCells: CellCoords[], gridLength: number) => {
+  livingCells.forEach((cells, index) => {
+    const surroundingCellCoords = getSurroundingCellCoords(cells);
+    const existingSurroundingCellCoords = getExistingSurroundingCellCoords(surroundingCellCoords, gridLength);
+
+    const cellNeighbours = getCellNeighbours(existingSurroundingCellCoords, livingCells);
+
+    if (cellNeighbours.length < 2 || cellNeighbours.length > 3) {
+      livingCells.splice(index, 1);
+    };
+
+    if (cellNeighbours.length === 3) {
+      livingCells.push({ x: cells.x + 1, y: cells.y + 1 })
+    }
+  })
+}
+
+
 export function cellLive(cellule: CellCoords): boolean {
   return true;
 }
@@ -62,7 +88,7 @@ export function checkWhereToAddCell(cellule: CellCoords): string {
   return "left";
 }
 
-export function fillCell(cellule: CellCoords, color: string) {}
+export function fillCell(cellule: CellCoords, color: string) { }
 
 export function emptyCell(): boolean {
   return true;

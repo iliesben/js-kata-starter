@@ -39,23 +39,13 @@ it("remove cell", function () {
   expect([1, 0]).toIncludeSameMembers([0, 1]);
 });
 
-it("fill cell with right color", function () {
+
+it("have less than two neighbour", function () {
   expect([1, 0]).toIncludeSameMembers([0, 1]);
 });
 
-it("have one neighbour", function () {
-  expect([1, 0]).toIncludeSameMembers([0, 1]);
-});
-
-it("have two neighbour", function () {
-  expect([1, 0]).toIncludeSameMembers([0, 1]);
-});
 
 it("have three neighbour", function () {
-  expect([1, 0]).toIncludeSameMembers([0, 1]);
-});
-
-it("cell empty have three neighbour", function () {
   expect([1, 0]).toIncludeSameMembers([0, 1]);
 });
 
@@ -76,9 +66,5 @@ it("add cell to top", function () {
 });
 
 it("add cell to bottom", function () {
-  expect([1, 0]).toIncludeSameMembers([0, 1]);
-});
-
-it("empty cell", function () {
   expect([1, 0]).toIncludeSameMembers([0, 1]);
 });
