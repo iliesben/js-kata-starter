@@ -80,10 +80,6 @@ const InputStyled = styled("input")`
     color: #b6b6b6;
   }
 
-  :invalid {
-    background-color: red;
-  }
-
   :focus {
     border-bottom-style: 1px solid royalblue;
   }
