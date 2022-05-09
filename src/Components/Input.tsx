@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from "react";
 import styled from "styled-components";
 
-interface InputProps<TValue = unknown, TElement = HTMLInputElement> {
+interface InputProps<TValue = unknown> {
   onChange: (value?: TValue) => void;
   onBlur?: (...event: unknown[]) => void;
   onFocus?: (...event: unknown[]) => void;

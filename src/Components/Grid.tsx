@@ -1,4 +1,4 @@
-import React from "react";
+import React, { TdHTMLAttributes } from "react";
 import styled from "styled-components";
 import { Cell } from "./Cell";
 import { CellCoords } from "../utils/types";
@@ -8,27 +8,37 @@ interface GridProps {
   col?: number;
   firstGen: CellCoords[];
 
-  getCoords: (coords: CellCoords) => void
+  getCoords: (coords: CellCoords) => void;
 }
 
 export const Grid = (props: GridProps) => {
-
   const { row = 50, col = 50, firstGen } = props;
+
+  const selectedCell = (x: number, y: number) => {
+    return props.getCoords({ x, y });
+  };
+
   return (
     <Container>
       <table>
         <tbody>
-          {Array(row).fill(null).map((row, rowIndex) => (
-            <tr key={`col-${rowIndex}`}>
-              {Array(col).fill(null).map((col, colIndex) => (
-                <td key={`row-${colIndex}`} onClick={() => props.getCoords({x: colIndex, y: rowIndex})}>
-                  {firstGen.map(cell => (
-                    cell.x === colIndex && cell.y === rowIndex && <Cell key={`${cell.x}-${cell.y}`} color="black" />
+          {Array(row)
+            .fill(null)
+            .map((row, rowIndex) => (
+              <tr key={`col-${rowIndex}`}>
+                {Array(col)
+                  .fill(null)
+                  .map((col, colIndex) => (
+                    <td key={`row-${colIndex}`} onClick={(e) => selectedCell(colIndex, rowIndex)}>
+                      {firstGen.map(
+                        (cell) =>
+                          cell.x === colIndex &&
+                          cell.y === rowIndex && <Cell key={`${cell.x}-${cell.y}`} color="black" />
+                      )}
+                    </td>
                   ))}
-                </td>
-              ))}
-            </tr>
-          ))}
+              </tr>
+            ))}
         </tbody>
       </table>
     </Container>
