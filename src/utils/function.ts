@@ -1,9 +1,9 @@
 import { Cell } from "../model/cell.model";
-import { CellCoords } from "./types";
+import { CellCoords, GridType } from "./types";
 
-export const getExistingSurroundingCellCoords = (neighbours: CellCoords[], gridLength: number): CellCoords[] => {
+export const getExistingSurroundingCellCoords = (neighbours: CellCoords[], grid: GridType): CellCoords[] => {
   return neighbours.filter(
-    (neighbour) => neighbour.x >= 0 && neighbour.y >= 0 && neighbour.x <= gridLength && neighbour.y <= gridLength
+    (neighbour) => neighbour.x >= 0 && neighbour.y >= 0 && neighbour.x <= grid.row && neighbour.y <= grid.col
   );
 };
 
@@ -27,12 +27,12 @@ const getCellNeighbours = (existingSurroundingCellCoords: CellCoords[], livingCe
   );
 
 
-export const livingCell = (livingCells: CellCoords[], gridLength: number): CellCoords[] => {
+export const livingCell = (livingCells: CellCoords[], grid: GridType): CellCoords[] => {
   const nextGenCells: CellCoords[] = [];
 
   livingCells.map((cell) => {
     const surroundingCellCoords = getSurroundingCellCoords(cell);
-    const existingSurroundingCellCoords = getExistingSurroundingCellCoords(surroundingCellCoords, gridLength);
+    const existingSurroundingCellCoords = getExistingSurroundingCellCoords(surroundingCellCoords, grid);
 
     // voir si le voisin est viavnt ou non
     const cellNeighbours = getCellNeighbours(existingSurroundingCellCoords, livingCells);
@@ -50,15 +50,15 @@ export const livingCell = (livingCells: CellCoords[], gridLength: number): CellC
 
 // - passer en parametre de la fonction un tab des cellules vivantes
 // - pour chaque cellules qui vie regarder ses voisins
-// - verifie s'il vie ou s'il meurt ou s'il créer une nouvelle vie 
+// - verifie s'il vie ou s'il meurt ou s'il créer une nouvelle vie
 
 
 
-export const nextGenLoop = (livingCells: CellCoords[], gridLength: number) => {
+export const nextGenLoop = (livingCells: CellCoords[], grid: GridType) => {
   do {
     livingCells.forEach((cells, index) => {
       const surroundingCellCoords = getSurroundingCellCoords(cells);
-      const existingSurroundingCellCoords = getExistingSurroundingCellCoords(surroundingCellCoords, gridLength);
+      const existingSurroundingCellCoords = getExistingSurroundingCellCoords(surroundingCellCoords, grid);
 
       const cellNeighbours = getCellNeighbours(existingSurroundingCellCoords, livingCells);
 

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Grid } from "./Components/Grid";
+import { Game } from "./Components/Game";
 
 function App() {
   return (
     <div className="App">
-      <Grid started={[20, 20]} />
+      <Game />
     </div>
   );
 }

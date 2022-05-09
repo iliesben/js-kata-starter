@@ -7,7 +7,7 @@ interface CellProps {
 }
 
 export const Cell = (props: CellProps) => {
-  const { color = "white" } = props;
+  const {color = "white" } = props;
 
   return <StyledCell $color={color} />;
 };

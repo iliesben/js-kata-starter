@@ -5,3 +5,8 @@ export interface CellCoords {
   y: number;
 }
 
+export interface GridType {
+  col: number;
+  row: number;
+}
+
