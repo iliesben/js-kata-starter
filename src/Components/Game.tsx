@@ -22,9 +22,9 @@ export const Game = () => {
   const [luchedGame, setLunchedGame] = useState(false);
 
   const lunchGame = () => {
-    setLunchedGame(true);
-    // setCell(livingCell(cell, grid))
-    setInterval(() => setCell(livingCell(cell, grid)), 2000);
+    // setLunchedGame(true);
+    setCell(livingCell(cell, grid))
+    // setInterval(() => setCell(livingCell(cell, grid)), 2000);
   };
 
   const handleGridChange = (axe: keyof GridType, value: string | number | null | undefined) => {
