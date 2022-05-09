@@ -11,21 +11,26 @@ export const Game = () => {
     { x: 1, y: 1 },
     { x: 2, y: 1 },
     { x: 2, y: 2 },
-    // { x: 4, y: 0 },
+    { x: 4, y: 0 },
   ]);
 
   const [grid, setGrid] = useState<GridType>({
-    row: 10,
-    col: 10,
+    row: 15,
+    col: 15,
   });
 
   const [luchedGame, setLunchedGame] = useState(false);
 
-  const lunchGame = () => {
-    // setLunchedGame(true);
-    setCell(livingCell(cell, grid))
-    // setInterval(() => setCell(livingCell(cell, grid)), 2000);
-  };
+  const lunchGame = () => setLunchedGame(true);
+
+  useEffect(() => {
+    if(luchedGame){
+      const interval = setInterval(() => setCell(livingCell(cell, grid)), 500)
+      return () => clearInterval(interval);
+    }
+}, [luchedGame, cell]);
+
+  console.log('luchedGame:', luchedGame)
 
   const handleGridChange = (axe: keyof GridType, value: string | number | null | undefined) => {
     if (value) setGrid({ ...grid, [axe]: Number(value) });
