@@ -31,7 +31,7 @@ export const Game = () => {
     if (value) setGrid({ ...grid, [axe]: Number(value) });
   };
 
-  const handleGetCoords = (coords: CellCoords) => setCell([...cell, coords]);
+  const handleGetCoords = (coords: CellCoords[]) => setCell(coords)
 
   // game, start and game end -> state that stop click on grid and button when game is lunched
   return (

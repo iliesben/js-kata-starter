@@ -8,14 +8,15 @@ interface GridProps {
   col?: number;
   firstGen: CellCoords[];
 
-  getCoords: (coords: CellCoords) => void;
+  getCoords: (coords: CellCoords[]) => void;
 }
 
 export const Grid = (props: GridProps) => {
   const { row = 50, col = 50, firstGen } = props;
 
   const selectedCell = (x: number, y: number) => {
-    return props.getCoords({ x, y });
+    if(firstGen.some((cell) => cell.x === x && cell.y === y)) return props.getCoords(firstGen.filter(cell => !(cell.x === x && cell.y === y)))
+    return props.getCoords([...firstGen, {x, y}] as CellCoords[])
   };
 
   return (
