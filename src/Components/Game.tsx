@@ -11,12 +11,12 @@ export const Game = () => {
     { x: 1, y: 1 },
     { x: 2, y: 1 },
     { x: 2, y: 2 },
-    { x: 4, y: 0 },
+    // { x: 4, y: 0 },
   ]);
 
   const [grid, setGrid] = useState<GridType>({
-    row: 5,
-    col: 5,
+    row: 10,
+    col: 10,
   });
 
   const [luchedGame, setLunchedGame] = useState(false);

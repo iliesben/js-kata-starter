@@ -25,9 +25,12 @@ const getCellNeighbours = (existingSurroundingCellCoords: CellCoords[], livingCe
   existingSurroundingCellCoords.filter((cellCoord) =>
     livingCells.find((livingCell) => cellCoord.x === livingCell.x && cellCoord.y === livingCell.y)
   );
+// vériifier que le x de surroundingCellCoords est égale au x du livingCells et que que le y de surroundingCellCoords est égale au y du livingCells
+const existing = (tempGen: CellCoords[], cel: CellCoords): boolean => tempGen.some((nextGen) => nextGen.x === cel.x && nextGen.y === cel.y)
 
 export const livingCell = (livingCells: CellCoords[], grid: GridType): CellCoords[] => {
   const nextGenCells: CellCoords[] = [];
+  const tempGen: CellCoords[] = [];
 
   livingCells.map((cell, index) => {
     const surroundingCellCoords = getSurroundingCellCoords(cell);
@@ -38,30 +41,25 @@ export const livingCell = (livingCells: CellCoords[], grid: GridType): CellCoord
 
     if (cellNeighbours.length === 2 || cellNeighbours.length === 3) nextGenCells.push(cell);
 
-    // regarder si la cellule entrain d'être checkée dans difference.map est deja dans nextGenCells
-    if (cellNeighbours.length === 2) {
-      let difference = existingSurroundingCellCoords.filter(x => livingCells.indexOf(x) === -1);
-      console.log('difference:', difference)
+    if (cellNeighbours.length >= 2) {
+      let difference = surroundingCellCoords.filter((x) => cellNeighbours.indexOf(x) < 0);
       difference.map((cell, index) => {
-        const length = getSurroundingCellCoords(cell).length;
-        console.log(length)
-        if (length === 3) {
-          nextGenCells.push(cell);
+        // const deadCell = getSurroundingCellCoords(cell).length;
+        const deadCell = getExistingSurroundingCellCoords(getSurroundingCellCoords(cell), grid)
+        const deadCellNeigbours = getCellNeighbours(deadCell, livingCells);
+
+        if (deadCellNeigbours.length === 3) {
+          if (!existing(tempGen, cell)) {
+            nextGenCells.push(cell);
+            tempGen.push(cell);
+          }
         }
       });
     }
-
-    if (cellNeighbours.length < 2 || cellNeighbours.length > 3) {
-      nextGenCells.splice(index, 1);
-    }
-
-    console.log(livingCells);
-    console.log(existingSurroundingCellCoords);
-    console.log(nextGenCells);
   });
 
   livingCells = nextGenCells
-  return livingCells;
+  return nextGenCells;
 };
 // - Si dans les voisines ça vie
 // - Meurt si moins de 2 voisines ou plus 3 de voisines
