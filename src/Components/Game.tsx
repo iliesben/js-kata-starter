@@ -24,6 +24,7 @@ export const Game = () => {
   const [launchedGame, setLaunchedGame] = useState(false);
 
   useEffect(() => {
+    if(cell.length === 0) setLaunchedGame(false)
     if(launchedGame){
       const interval = setInterval(() => setCell(livingCell(cell, grid)), speed * 1000)
       return () => clearInterval(interval);
@@ -49,6 +50,7 @@ export const Game = () => {
         <Input type="number" label="Vitesse :" onChange={handleSpeed} value={speed} />
       </InputContainer>
       <GameContainer>
+        <p>Le jeu est {launchedGame ? "lancé" : !launchedGame && cell.length === 0 ? "terminé ma couille" : "arreté"}</p>
         <Button label="Lance le jeu" onClick={() => setLaunchedGame(true)} />
         <Grid row={grid.row} col={grid.col} getCoords={handleGetCoords} firstGen={cell} />
       </GameContainer>
@@ -84,6 +86,7 @@ const GameContainer = styled.div`
   padding-block: 2rem;
   padding-bottom: 0rem;
   display: flex;
+  gap: .35rem;
   flex-direction: column;
   align-items: center;
 `;

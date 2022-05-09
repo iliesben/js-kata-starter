@@ -3,7 +3,6 @@ import * as matchers from "jest-extended";
 import {
   getInitialGrid,
   emptyCell,
-  cellHasMoreThanThreeNeighbours,
   cellHasLessThanTwoNeighbours,
   checkWhereToAddCell,
   getSurroundingCellCoords,
@@ -12,25 +11,25 @@ import {
 } from "./utils/function";
 expect.extend(matchers);
 
-// it("That's a test!", function () {
-//   expect(1 + 1).toEqual(2);
-// });
+it("That's a test!", function () {
+  expect(1 + 1).toEqual(2);
+});
 
-// it("jest-extended is included", function () {
-//   expect([1, 0]).toIncludeSameMembers([0, 1]);
-// });
+it("jest-extended is included", function () {
+  expect([1, 0]).toIncludeSameMembers([0, 1]);
+});
 
-// it("Get neighbours", function () {
-//   const cellule = { x: 0, y: 0 };
-//   const test = getSurroundingCellCoords(cellule);
-//   console.log("Get neighbours:", test);
-// });
+it("Get neighbours", function () {
+  const cellule = { x: 0, y: 0 };
+  const test = getSurroundingCellCoords(cellule);
+  console.log("Get neighbours:", test);
+});
 
-// it("Check neighbours", function () {
-//   const cellule = { x: 20, y: 20 };
-//   const test = getExistingSurroundingCellCoords(getSurroundingCellCoords(cellule), 20);
-//   console.log("Check neighbours:", test);
-// });
+it("Check neighbours", function () {
+  const cellule = { x: 20, y: 20 };
+  const test = getExistingSurroundingCellCoords(getSurroundingCellCoords(cellule), 20);
+  console.log("Check neighbours:", test);
+});
 
 it("Check neighbours", function () {
   const fiestGen = [
@@ -42,27 +41,27 @@ it("Check neighbours", function () {
   console.log("test:", test);
 });
 
-// it("add cell", function () {
-//   const pos = "left";
-//   const cellule = { x: 0, y: 0, color: "white" as const };
+it("add cell", function () {
+  const pos = "left";
+  const cellule = { x: 0, y: 0, color: "white" as const };
 
-//   if (checkWhereToAddCell(cellule) === pos) {
-//     cellule.x += 10;
-//     cellule.y += 10;
-//   }
+  if (checkWhereToAddCell(cellule) === pos) {
+    cellule.x += 10;
+    cellule.y += 10;
+  }
 
-//   expect([1, 0]).toIncludeSameMembers([0, 1]);
-// });
+  expect([1, 0]).toIncludeSameMembers([0, 1]);
+});
 
-// it("remove cell", function () {
-//   const cellule = { x: 0, y: 0, color: "white" as const };
-//   if (cellHasLessThanTwoNeighbours(cellule) || cellHasMoreThanThreeNeighbours(cellule)) {
-//     cellule.x -= 10;
-//     cellule.y -= 10;
-//   }
+it("remove cell", function () {
+  const cellule = { x: 0, y: 0, color: "white" as const };
+  if (cellHasLessThanTwoNeighbours(cellule)) {
+    cellule.x -= 10;
+    cellule.y -= 10;
+  }
 
-//   expect([1, 0]).toIncludeSameMembers([0, 1]);
-// });
+  expect([1, 0]).toIncludeSameMembers([0, 1]);
+});
 
 // it("fill cell with right color", function () {
 //   expect([1, 0]).toIncludeSameMembers([0, 1]);
